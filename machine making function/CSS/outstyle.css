@@ -1,0 +1,27 @@
+body{
+    margin-left:auto;
+    margin-right:auto;
+    background: url(ba.jpg);
+    background-size:70%;
+    position:relative;
+    padding: 20px;
+
+}
+#choose{
+    position:relative;
+    font-size: 20pt;
+    font-weight:bold;
+    margin:10px 50px;
+    color:#90ee90;
+    float:right;
+}
+
+#moon{
+    clear: both; 
+    margin:100px 50px;
+    font-size: 20px;
+    background: rgba(100%,1000%,100%,0.8);
+    position:relative;
+    padding: 50px 200px 100px 200px;
+    color:black;
+}
