@@ -1,0 +1,49 @@
+body{
+    margin-left:auto;
+    margin-right:auto;
+    background: url(../images/inside.jpg);
+    background-size:cover;
+    position:relative;
+    padding: 20px;
+
+}
+th {
+color:blue;
+font-family:標楷體;
+font-size:24pt;
+padding:10px;
+}
+td {
+font-size:16pt;
+}
+table{
+background: rgba(100%,1000%,100%,0.8);
+}
+#menu{
+	position:absolute;
+	left:600px;
+}
+#menu li {
+	margin:20px auto;
+	text-decoration:none;
+	display:block;
+	border:7px solid #00DD77;
+	border-radius:5px 5px 5px 5px;/*圓角:左上 右上 右下 左下*/
+    background: rgba(100%,1000%,100%,0.8);
+	padding:24px;
+	width:200px;
+	font-size:16pt;
+	position:relative;
+}
+
+
+
+#form{
+    clear: both; 
+    margin:100px 50px;
+    font-size: 20px;
+    background: rgba(100%,1000%,100%,0.6);
+    position:relative;
+    padding: 50px 200px 100px 200px;
+    color:black;
+}
