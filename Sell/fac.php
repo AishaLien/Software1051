@@ -35,7 +35,7 @@ while ( $rs=mysqli_fetch_assoc($result))
     $sql3="update userlist set  much = $a where have='$rs[MID]';";
     $result3=mysqli_query($conn,$sql3) or die("DB Error: Cannot retrieve message fuckOAQ.");
     $sum+=$computer*$rs['price'];
-    $sql5="insert into buy(time,thing,uid) values ('$datetime','$rs[cname]','$user');";
+    $sql5="insert into buy(time,thing,uid,much) values ('$datetime','$rs[cname]','$user','$computer');";
     if($computer>0)
     $result5=mysqli_query($conn,$sql5) or die("DB Error: Cannot retrieve message fuck2.");
 }
@@ -53,7 +53,7 @@ while ( $rs=mysqli_fetch_assoc($result))
     $sql3="update userlist set  much = $a where have='".$rs['IID']."' and UID = 'Mary' ";
     $result3=mysqli_query($conn,$sql3) or die("DB Error: Cannot retrieve message fuckOAQ.");
     $sum+=$computer*$rs['price'];
-    $sql5= "insert into buy(time,thing,UID) values ('$datetime','".$rs['cname']."','Mary');";
+    $sql5= "insert into buy(time,thing,UID,much) values ('$datetime','".$rs['cname']."','Mary','$computer');";
     //"insert into buy(time,thing,num,UID) values ('$datetime','".$rs['cname']."','$computer','Mary');";
     if($computer>0)
     $result5=mysqli_query($conn,$sql5) or die("DB Error: Cannot retrieve message fuckOAQQ.");
