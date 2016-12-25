@@ -24,7 +24,9 @@ function b(id)
 </script>
 <?php
 require("connect.php");
-$sql="select have,product.cname,much from userlist,product,user where userlist.have = product.PID and userlist.UID = user.ID and user.ID = 'Mary';";
+session_start();
+$user = $_SESSION['userID'];
+$sql="select have,product.cname,much from userlist,product,user where userlist.have = product.PID and userlist.UID = user.ID and user.ID = '$user';";
 $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message.");
 //echo "<table width=300 border=1 >";
 echo "<table width=300 border=1 align=center>";

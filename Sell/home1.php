@@ -22,6 +22,7 @@ $user = $_SESSION['userID'];
 	<ul>
 		<li><a href="ingredient2.php">材料庫存</a></li>
 		<li><a href="product.php">擁有產品</a></li>
+        <li><a href="show.php">產品明細</a></li>
 		<li><a href="store.php">商城</a></li>
         <li><a href="record.php">購買明細</a></li>
         <li><a href="record2.php">製作明細</a></li>

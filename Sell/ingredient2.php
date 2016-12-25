@@ -25,7 +25,9 @@ function b(id)
 </script>
 <?php
 require("connect.php");
-$sql="select * from userlist,ingredient,user where userlist.have = ingredient.IID and userlist.UID=user.ID and user.ID = 'Mary'";
+session_start();
+$user = $_SESSION['userID'];
+$sql="select * from userlist,ingredient,user where userlist.have = ingredient.IID and userlist.UID=user.ID and user.ID = '$user'";
 $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message.");
 echo "<table width=300 border=1 align=center>";
 echo "<tr>";

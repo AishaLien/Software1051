@@ -12,6 +12,8 @@
 <?php
 //echo "<font color = red>機器</font>";
 require("connect.php");
+session_start();
+$user = $_SESSION['userID'];
 echo"<form name=info method=post action=fac.php>";
 $r=-4;
 $sql = "select * from machine ;";

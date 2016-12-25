@@ -48,12 +48,12 @@ function checkin($PID,$UID,$conn){
 }
 //製作
 if(checkin($id,$UID,$conn)==1){
-    $sql = "update status set PID='$id' where num = $n";
-    $res=mysqli_query($conn,$sql) or die("db error");
-    $sql = "update status set busy=1 where num = '$n'";
-    $res=mysqli_query($conn,$sql) or die("db error");
+    $sql = "update status set PID='$id' where Unum=$n and UID = '$UID'";
+    $res=mysqli_query($conn,$sql) or die("db error1");
+    $sql = "update status set busy=1 where Unum=$n and UID = '$UID'";
+    $res=mysqli_query($conn,$sql) or die("db error2");
     $sql="select time from product where PID = '$id'";
-    $res=mysqli_query($conn,$sql) or die("db error");
+    $res=mysqli_query($conn,$sql) or die("db error3");
     //依照時間設置
      $j=0;
     while ($ro = mysqli_fetch_row($res)) {
@@ -65,7 +65,7 @@ if(checkin($id,$UID,$conn)==1){
 
     //設置時間為$str = "+7 hours $sec seconds"
     $newD = date("Y-m-d H:i:s",strtotime($str)); 
-    $sql="update status set time ='$newD' where num=$n";
+    $sql="update status set time ='$newD' where Unum=$n and UID = '$UID'";
     $res=mysqli_query($conn,$sql) or die("db error");
     echo "OK";
 }

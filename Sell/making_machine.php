@@ -68,9 +68,6 @@ function checkm() {
 	//array length: number of items in the global array: myArray
 	for (i=0; i < myArray.length;i++) {	
 		tday=new Date(myArray[i]['time']); //convert the date string into date object in javascript
-		console.log(i);
-        console.log(tday)
-        console.log(now)
         if (tday <= now) { 
 			//expired, set the explode image and text
             check_add(i);
@@ -109,10 +106,10 @@ window.onload = function () {
 $user = $_SESSION['userID'];
 $i=0; //counter for machine 紀錄機器數
 //select all bomb information from DB
-$sql=" select status.time,status.PID,status.num,status.busy,userlist.have 
+$sql=" select status.time,status.PID,status.Unum,status.busy,userlist.have 
          from status,userlist
-         where status.MID = userlist.have and userlist.UID= '$user'
-         group by status.num"; 
+         where status.MID = userlist.have and status.UID= '$user'
+         group by status.Unum"; 
 $res=mysqli_query($conn,$sql) or die("db1 error");
 $arr = array(); //define an array for bombs
 echo "<tr bgColor=\"#ffffffff\"><th>製造</th><th>空閒與否</th><th>製造的商品</th></tr>";

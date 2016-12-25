@@ -11,7 +11,8 @@
 <button type="button" value="回首頁" onclick="location.href='making_machine.php'">回工廠<img src="images/build.png" width=30 height=30></button>
 <?php
 require("connect.php");
-$user = 'Mary';
+session_start();
+$user = $_SESSION['userID'];
 $sql="select * from user where ID='$user';";
 $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message.");
 $rs=mysqli_fetch_assoc($result);

@@ -6,13 +6,18 @@
 <?php
 require("connect.php");
 date_default_timezone_set('Asia/Taipei');
-$user = "Mary";
+session_start();
+$user = $_SESSION['userID'];
 $datetime= date("Y/m/d H:i:s");
 //找到所有machine 內的資料
 $sql="select * from machine;";
 $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message1.");
 //找到所有正在做的東西的資料
-$sql6="select * from status;";
+$sqlt="select max(Unum) as Unum from status where UID = '$user'";
+$res=mysqli_query($conn,$sqlt) or die("db error");
+$rs=mysqli_fetch_assoc($res);
+$Unum= (int)$rs['Unum']+1;
+$sql6="select * from status where UID = '$user';";
 $result6=mysqli_query($conn,$sql6) or die("DB Error: fuck.");
 $sum=0;
 $total_records=mysqli_num_rows($result6); 
@@ -23,7 +28,7 @@ while ( $rs=mysqli_fetch_assoc($result))
 	{   
 		$s=$total_records+$a;
 		$serial="M01";
-		$sql6="insert into status(time,PID,MID,cname,busy) values ('$datetime','P01','$serial','$rs[cname]','0');";
+		$sql6="insert into status(time,PID,MID,cname,busy,UID,Unum) values ('$datetime','P01','$serial','$rs[cname]','0','$user',$Unum);";
 	    $result6=mysqli_query($conn,$sql6) or die("DB Error: fuck1.");
 	}
 	$sql2="select * from userlist where have='$rs[MID]';";
@@ -50,15 +55,15 @@ while ( $rs=mysqli_fetch_assoc($result))
 	$a= $rs2['much']+$computer;
 	echo "你買了".$rs['cname'].$computer."公克";
 	echo "<br>";
-    $sql3="update userlist set  much = $a where have='".$rs['IID']."' and UID = 'Mary' ";
+    $sql3="update userlist set  much = $a where have='".$rs['IID']."' and UID = '$user' ";
     $result3=mysqli_query($conn,$sql3) or die("DB Error: Cannot retrieve message fuckOAQ.");
     $sum+=$computer*$rs['price'];
-    $sql5= "insert into buy(time,thing,UID,much) values ('$datetime','".$rs['cname']."','Mary','$computer');";
-    //"insert into buy(time,thing,num,UID) values ('$datetime','".$rs['cname']."','$computer','Mary');";
+    $sql5= "insert into buy(time,thing,UID,much) values ('$datetime','".$rs['cname']."','$user','$computer');";
+    //"insert into buy(time,thing,num,UID) values ('$datetime','".$rs['cname']."','$computer','$user');";
     if($computer>0)
     $result5=mysqli_query($conn,$sql5) or die("DB Error: Cannot retrieve message fuckOAQQ.");
 }
-$sql="select * from user where ID='Mary';";
+$sql="select * from user where ID='$user;";
 $result=mysqli_query($conn,$sql) or die("DB Error: Cannot retrieve message3.");
 $rs=mysqli_fetch_assoc($result);
 if($sum>$rs['money'])
@@ -67,7 +72,7 @@ if($sum==0)
 echo '<font color=blue>'."來了就要買好嗎，下次請消費"."</font>";
 else
 	{
-	$sql4="update user set  money = ".$rs['money']."-$sum where ID='Mary';";
+	$sql4="update user set  money = ".$rs['money']."-$sum where ID='$user';";
     $result4=mysqli_query($conn,$sql4) or die("DB Error: Cannot retrieve message.");
     echo "你共花了".$sum;
 }
